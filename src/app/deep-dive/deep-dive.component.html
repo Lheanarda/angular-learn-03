@@ -1,0 +1,27 @@
+<p class="display-4 mt-2">Add New Server or Blueprint</p>
+<hr>
+<div class="form-group">
+    <label for="server-name">Server Name</label>
+    <input class="form-control" type="text" id="server-name" placeholder="Enter server name" [(ngModel)]="serverName">
+</div>
+<div class="form-group">
+    <label for="server-content">Server Content</label>
+    <input class="form-control" type="text" id="server-content" placeholder="Enter server content" [(ngModel)]="serverContent">
+</div>
+<div class="row col-8">
+    <button class="btn btn-outline-info mr-3 mt-2" (click)="onAddServer()">Add Server</button>
+    <button class="btn btn-outline-primary mt-2" (click)="onAddBlueprint()">Add Server Blueprint</button>
+</div>
+<hr>
+<ul class="list-group mb-5 mt-3" *ngFor = "let name of names; let content of contents; let addedServer of addedServers; let idx = index">
+    <li class="list-group-item bg-dark text-light" >{{name}}</li>
+    <li class="list-group-item pt-5 pb-5 " 
+        *ngIf="addServer; else blueprint"
+        [ngStyle]="{color: addedServer ? 'green' : 'red' } "
+    >{{content}}</li>
+
+    <ng-template #blueprint>
+        <li class="list-group-item pt-5 pb-5 ">{{name}} </li>
+    </ng-template>
+</ul>
+
